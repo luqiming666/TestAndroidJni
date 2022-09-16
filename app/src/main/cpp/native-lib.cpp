@@ -1,6 +1,10 @@
 #include <jni.h>
 #include <string>
 
+/**
+ * https://blog.csdn.net/weiwangchao_/article/details/48163163
+ */
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_testandroidjni_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -24,7 +28,7 @@ Java_com_example_testandroidjni_MainActivity_testLength(
         jobject /* this */,
         jstring text) {
     char* str = (char*) env->GetStringUTFChars(text,JNI_FALSE);
-    if (str != NULL) {
+    if (str != nullptr) {
         size_t len = std::strlen(str);
         env->ReleaseStringUTFChars(text, str);
         return len;

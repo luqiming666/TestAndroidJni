@@ -2,7 +2,6 @@ package com.example.testandroidjni
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import com.example.testandroidjni.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,15 +10,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Example of a call to a native method
-        binding.sampleText.text = stringFromJNI()
+        binding.helloText.text = stringFromJNI()
 
-        val result = addTwoNumbers(1, 2)
-        val len =  testLength("AAC Shanghai")
+        binding.btnCalculate.setOnClickListener {
+            val len =  testLength("AAC Shanghai")
+            val result = addTwoNumbers(len, 66)
+            binding.info1.text = "The string length is $len, which plus 66 equals $result"
+        }
     }
 
     /**
